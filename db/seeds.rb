@@ -9,8 +9,16 @@ require 'faker'
 
 puts 'Cleaning the db'
 Movie.destroy_all
+List.destroy_all
 
 puts 'Seeding db 🌱'
+
+5.times do
+  list = List.create(
+    name: Faker::Music.genre
+  )
+  puts "List with id: #{list.id} has been created"
+end
 
 10.times do
   movie = Movie.create(
