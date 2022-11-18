@@ -2,11 +2,25 @@
 <ul class="list-group">
   <% @list.bookmarks.each do |bookmark| %>
     <li class="list-group-item">
-      <%= bookmark.comment %> |
-      <%= bookmark.movie.title %>
+      <h1><%= bookmark.movie.title %></h1>
+      <p><%= bookmark.movie.rating %> ⭐️</p>
+      <p><%= bookmark.movie.overview %></p>
+      <img src="<%= bookmark.movie.poster_url %>" alt="">
+      <p><%= bookmark.comment %></p>
+      <%= link_to 'Delete bookmark', list_bookmark_path(@list, bookmark),
+      data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
     </li>
   <% end %>
 </ul>
 <%= link_to 'Go to lists', lists_path %>
-<%= link_to 'Delete', list_path(@list),
-  data: {turbo_method: :delete, turbo_confirm: 'Seguro?'} %>
+<button class="btn btn-danger"><%= link_to 'Delete', list_path(@list),
+  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %></button>
+
+<div class="form">
+  <h3>Add a new movie</h3>
+<%= simple_form_for [ @list, @bookmark ] do |f| %>
+  <%= f.input :comment, placeholder: 'Add your comment' %>
+  <%= f.association :movie %>
+  <%= f.submit "Add movie", class: "btn btn-primary" %>
+<% end %>
+</div>
