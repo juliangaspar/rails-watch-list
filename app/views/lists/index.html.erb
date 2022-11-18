@@ -4,3 +4,8 @@
   <li><%= link_to list.name, list_path(list.id)%></li>
 <% end %>
 </div>
+<div>
+<% @movies.each do |movie| %>
+<div><%= movie.title %></div>
+<% end %>
+</div>
