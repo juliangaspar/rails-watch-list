@@ -1,4 +1,9 @@
-<h1>Watchlists</h1>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.mbatious.com/assets/uploads/files/1497349879912-movies.jpg?v=47t6fd0svpu);">
+  <div class="container">
+    <h1>Your <strong>Watchlist</strong></h1>
+  </div>
+</div>
+
 <div>
 <% @lists.each do |list| %>
   <li><%= link_to list.name, list_path(list.id)%></li>
